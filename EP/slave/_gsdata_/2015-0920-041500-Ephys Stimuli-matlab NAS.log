@@ -1,0 +1,14 @@
+2015-09-20 04:15:01: -- Analysis Started by Scheduler
+2015-09-20 04:15:01: Do Not Propagate Deletions: 1-way deletions reverted: 7
+2015-09-20 04:15:01: Changes: 6, Conflicts: 0, CopyTime: 0, CopyState: 0/0, Errors: 0, All: 139
+2015-09-20 04:15:01: Left to Right: Copy File: 6 
+2015-09-20 04:15:01: == Sync Started by Scheduler
+2015-09-20 04:15:01: Copy New '/Stimulator_slave/configure/configPstate_GAManualMapper.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/configure/configPstate_GAManualMapper.m'
+2015-09-20 04:15:01: Copy Over '/Stimulator_slave/configure/configurePstate.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/configure/configurePstate.m'
+2015-09-20 04:15:01: Copy Over '/Stimulator_slave/makeTexture.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/makeTexture.m'
+2015-09-20 04:15:01: Copy New '/Stimulator_slave/makeTextures/makeGAManualMapper.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/makeTextures/makeGAManualMapper.m'
+2015-09-20 04:15:01: Copy Over '/Stimulator_slave/playstimulus.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/playstimulus.m'
+2015-09-20 04:15:01: Copy New '/Stimulator_slave/playtextures/playGAManualMapper.m' -> 'http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/playtextures/playGAManualMapper.m'
+2015-09-20 04:15:01: Deleted Recycled: http://172.30.11.151:5005/NielsenBackup/Ephys/stimulator matlab/slave/_gsdata_/_saved_/makeTextures/makeRandomDots.m
+2015-09-20 04:15:01: == Sync Complete. Time: 00:00:00, Speed: 0.0/s, OK: 6, Errors: 0
+2015-09-20 04:15:01: 

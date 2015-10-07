@@ -1,0 +1,21 @@
+2015-09-26 04:45:00: nielsenlabdata2.nielsenlab.goodsync is on local network, trying direct connect at 172.30.11.152:33333
+2015-09-26 04:45:00: -- Analysis Started by Scheduler
+2015-09-26 04:45:01: Changes: 12, Conflicts: 0, CopyTime: 0, CopyState: 2/0, Errors: 0, All: 139
+2015-09-26 04:45:01: Left to Right: Copy File: 10 Delete File: 2 Copy State: 2 
+2015-09-26 04:45:01: == Sync Started by Scheduler
+2015-09-26 04:45:01: Delete File 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/makeTextures/utils/makeGraterDomain_beta.m~'
+2015-09-26 04:45:01: Delete File 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/playtextures/playrandomdot.m~'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/configure/configPstate_flashPlaid.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/configure/configPstate_flashPlaid.m'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/configure/configPstate_GAManualMapper.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/configure/configPstate_GAManualMapper.m'
+2015-09-26 04:45:01: Copy Over '/Stimulator_slave/configure/configurePstate.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/configure/configurePstate.m'
+2015-09-26 04:45:01: Copy Over '/Stimulator_slave/makeTexture.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/makeTexture.m'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/makeTextures/makeGAManualMapper.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/makeTextures/makeGAManualMapper.m'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/makeTextures/makeGratingTexture_flashPlaid.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/makeTextures/makeGratingTexture_flashPlaid.m'
+2015-09-26 04:45:01: Copy Over '/Stimulator_slave/makeTextures/makeRandomDots.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/makeTextures/makeRandomDots.m'
+2015-09-26 04:45:01: Copy Over '/Stimulator_slave/playstimulus.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/playstimulus.m'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/playtextures/playGAManualMapper.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/playtextures/playGAManualMapper.m'
+2015-09-26 04:45:01: Copy New '/Stimulator_slave/playtextures/playgrating_flashPlaid.m' -> 'gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/playtextures/playgrating_flashPlaid.m'
+2015-09-26 04:45:01: Deleted Recycled: gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/_gsdata_/_saved_/playtextures/playrandomdot.m
+2015-09-26 04:45:01: Deleted Recycled: gstp://nielsenlabdata2.nielsenlab.goodsync/file:///C:/Ephys/stimulator matlab/slave/_gsdata_/_saved_/playtextures/playopticflow.m
+2015-09-26 04:45:01: == Sync Complete. Time: 00:00:00, Speed: 0.0/s, OK: 14, Errors: 0
+2015-09-26 04:45:01: 

@@ -1,7 +1,7 @@
 function Stimulator2
 
 %Initialize stimulus parameter structures
-configurePstate('FG')
+configurePstate(1)
 configureMstate
 configureLstate
 

@@ -64,8 +64,11 @@ guidata(hObject, handles);
 
 global GUIhandles playSampleFlag
 
-modStrings{1} = 'RevCor Drifting Grating';
+mList=moduleListMaster;
 
+for i=1:length(mList)
+    modStrings{i} = mList{i}{2};
+end
 
 
 set(handles.module,'string',modStrings)
@@ -196,9 +199,9 @@ function module_Callback(hObject, eventdata, handles)
 % Hints: contents = get(hObject,'String') returns module contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from module
 
-mod = getmoduleID;  %return 2 element string
-configurePstate(mod) 
-refreshParamView
+mi = get(hObject,'value');
+configurePstate(mi); 
+refreshParamView(1); %we're changing lists
 
 % --- Executes during object creation, after setting all properties.
 function module_CreateFcn(hObject, eventdata, handles)
@@ -251,10 +254,7 @@ function playSample_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%runSample
-
-global Mstate
 
 startStimulus      %Tell Display to show its buffered images. 
-%waitforDisplayResp   %Wait for serial port to respond from display at end of trial
+
 

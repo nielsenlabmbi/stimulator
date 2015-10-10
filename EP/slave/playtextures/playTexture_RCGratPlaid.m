@@ -1,4 +1,4 @@
-function playTexture_DG
+function playTexture_RCGratPlaid
 %reverse correlation with drifting gratings; this handles rotation, sliding
 %and contrast
 %assumes normalized color
@@ -62,34 +62,47 @@ end
 for i = 1:N_Im
     
     %get orientation and spatial frequency
-    ori=Gseq.oridom(Gseq.oriseq(i));
-    p=Gseq.phasedom(Gseq.phaseseq(i));
+   
+    p1=Gseq.phasedom(Gseq.phaseseq1(i));
+    p2=Gseq.phasedom(Gseq.phaseseq2(i));
 
     %adjust contrast for blank
     if Gseq.blankflag(i)==1
-        sfid=1;
+        ori1=0;
+        ori2=0;
+        plaidbit=0;
         ctr=0;
-        sfreq=min(Gseq.sfdom);
     else
-        sfid=Gseq.sfseq(i);
+        ori1=Gseq.oridom(Gseq.oriseq(i));
+        ori2=ori1+P.ori_diff;
+        plaidbit=Gseq.plaiddom(Gseq.plaidseq(i));
         ctr=P.contrast/100*0.5;  %full contrast = .5 (grating goes from -0.5 to 0.5, and is added to background of 0.5)
-        sfreq=Gseq.sfdom(sfid);
     end
     
     %get shift per frame
-    pixpercycle=deg2pix(1/sfreq,'none');
-    shiftperframe=pixpercycle/P.t_period;
+    pixpercycle=deg2pix(1/P.s_freq,'none');
+    if P.drift==1
+        shiftperframe=pixpercycle/P.t_period;
+    end
     
     for j = 1:P.h_per 
-        %draw stimulus
-        xoffset = mod((j-1)*shiftperframe+p/360*pixpercycle,pixpercycle);
-        stimSrc=[xoffset 0 xoffset + stimsizeN stimsizeN];
+        %determine which part of the stimuli to draw
+        xoffset1 = mod((j-1)*shiftperframe+p1/360*pixpercycle,pixpercycle);
+        stimSrc1=[xoffset1 0 xoffset1 + stimsizeN stimsizeN];
+        
+        if plaidbit==1
+            xoffset2 = mod((j-1)*shiftperframe+p2/360*pixpercycle,pixpercycle);
+            stimSrc2=[xoffset2 0 xoffset2 + stimsizeN stimsizeN];
+        end
     
         %need to set blend function so that the global alpha can scale the
         %contrast
         Screen('BlendFunction', screenPTR, GL_SRC_ALPHA, GL_ONE);
-        Screen('DrawTexture', screenPTR, Gtxtr(sfid), stimSrc, stimDst,ori,[],ctr);
-    
+        Screen('DrawTexture', screenPTR, Gtxtr, stimSrc1, stimDst,ori1,[],ctr);
+        if plaidbit==1
+            Screen('DrawTexture', screenPTR, Gtxtr, stimSrc2, stimDst,ori2,[],ctr);
+        end
+        
         %add mask
         Screen('BlendFunction', screenPTR, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         Screen('DrawTexture', screenPTR, Masktxtr);

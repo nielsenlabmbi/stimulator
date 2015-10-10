@@ -4,7 +4,7 @@ function run2
 %This function now gets called for play sample, as well. Hence the global
 %conditional of Mstate.runnind
 
-global GUIhandles Pstate Mstate trialno
+global GUIhandles  Mstate trialno
 
 if Mstate.running
     nt = getnotrials;
@@ -12,16 +12,11 @@ end
 
 
 
-
-EphysBit = get(GUIhandles.main.ephysflag,'value');  %Flag for the link with scanimage
-
 if Mstate.running && trialno<=nt
     
-
-  
     set(GUIhandles.main.showTrial,'string',['Trial ' num2str(trialno) ' of ' num2str(nt)] ), drawnow
 
-    [c r] = getcondrep(trialno);  %get cond and rep for this trialno
+    [c,~] = getcondrep(trialno);  %get cond and rep for this trialno
 
     %set eye shutter
     setShutter(c,trialno)
@@ -34,17 +29,12 @@ if Mstate.running && trialno<=nt
     startStimulus      %Tell Display to show its buffered images. TTL from stimulus computer "feeds back" to trigger acquisition
     %waitforDisplayResp
     
-    %We don't want anything significant to happen after startStimulus, so that
-    %scanimage will be ready to accept TTL
-    
     trialno = trialno+1;
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 else
     
-    %Before, I had this in the 'mainwindow callback routine, which messed
-    %things up on occasion.
     %This is executed at the end of experiment and when abort button is hit
     if get(GUIhandles.main.ephysflag,'value');
         stopACQ;

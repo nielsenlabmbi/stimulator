@@ -1,4 +1,4 @@
-function refreshParamView
+function refreshParamView(varargin)
 
 global Pstate GUIhandles
 
@@ -14,7 +14,10 @@ for i = 1:length(Pstate.param)
             s{i} = sprintf('%16s: %7s',p{1},p{3});
     end
 end
-set(GUIhandles.param.parameterList,'value',1);
+
+if nargin==1  %necessary b/c we're switching lists
+    set(GUIhandles.param.parameterList,'value',1);
+end
 set(GUIhandles.param.parameterList,'String',s);
 
 

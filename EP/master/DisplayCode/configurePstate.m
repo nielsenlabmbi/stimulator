@@ -1,8 +1,6 @@
 function configurePstate(modID)
 
-switch modID
-    case 'DG'
-        configurePstate_DG
-    
-    
-end     
+%modID: number of module
+Mlist=moduleListMaster;
+
+eval(Mlist{modID}{3});

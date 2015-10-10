@@ -1,11 +1,11 @@
-function makeTexture_DG
+function makeTexture_RCGrating
 
 %Reverse correlation with drifting grating; this function only generates
 %one line of the grating per spatial frequency, as well as the distribution
 %of conditions; the rest is handled in playTexture_DG
 %this assumes a normalized color scale from 0 to 1
 
-global Mstate screenPTR screenNum loopTrial
+global Mstate screenPTR screenNum 
 
 global Gtxtr  Masktxtr  Gseq %'play' will use these
 
@@ -13,8 +13,12 @@ global Gtxtr  Masktxtr  Gseq %'play' will use these
 if ~isempty(Gtxtr)
     Screen('Close',Gtxtr);  %First clean up: Get rid of all textures/offscreen windows
 end
+if ~isempty(Masktxtr)
+    Screen('Close',Masktxtr);  %First clean up: Get rid of all textures/offscreen windows
+end
 
 Gtxtr = [];  
+Masktxtr=[];
 
 
 %get parameters
@@ -27,28 +31,10 @@ xN=deg2pix(P.x_size,'round');
 yN=deg2pix(P.y_size,'round');
 
 
-%create the mask - needs to be screen size to deal with the rotation
-xdom=linspace(-screenRes.width/2,screenRes.width/2,screenRes.width);
-ydom=linspace(-screenRes.height/2,screenRes.height/2,screenRes.height);
-[xdom,ydom] = meshgrid(xdom,ydom); %this results in a matrix of dimension height x width
-r = sqrt(xdom.^2 + ydom.^2);
-
-maskradiusN=deg2pix(P.mask_radius,'round');
-
-if strcmp(P.mask_type,'gauss')
-    mask = 1-exp((-r.^2)/(2*maskradiusN^2));
-elseif strcmp(P.mask_type,'disc') %disc is the default
-    mask =1-(r<=maskradiusN);
-else
-    xran = [P.x_pos-floor(xN/2)+1  P.x_pos+ceil(xN/2)];
-    yran = [P.y_pos-floor(yN/2)+1  P.y_pos+ceil(yN/2)];
-    mask=ones(size(r));
-    mask(yran(1):yran(2),xran(1):xran(2))=0;
-end
-
-maskblob = 0.5*ones(screenRes.height,screenRes.width,2);
-maskblob(:,:,2) = mask;
-Masktxtr = Screen(screenPTR, 'MakeTexture', maskblob,[],[],2);  %need to specify correct mode to allow for floating point numbers
+%create the mask
+mN=deg2pix(P.mask_radius,'round');
+mask=makeMask(screenRes,P.x_pos,P.y_pos,xN,yN,mN,P.mask_type);
+Masktxtr = Screen(screenPTR, 'MakeTexture', mask,[],[],2);  %need to specify correct mode to allow for floating point numbers
 
 
 %make orientation domains
@@ -133,21 +119,7 @@ end
 
 %save sequence data
 if Mstate.running
-    Pseq = struct;
-    Pseq.oriseq = oriseq;
-    Pseq.sfseq = sfseq;
-    Pseq.phaseseq = sfseq;
-    Pseq.blankflag=blankflag;
-    
-    if loopTrial == 1
-        domains = struct;
-        domains.oridom = oridom;
-        domains.sfdom = sfdom;
-        saveLog(domains)
-    end
-    saveLog(Pseq,P.rseed)  %append log file with the latest sequence
-    
-    
+    saveLog(Gseq,P.rseed)  %append log file with the latest sequence
 end
 
 

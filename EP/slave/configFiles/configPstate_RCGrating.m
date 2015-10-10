@@ -1,4 +1,4 @@
-function configPstate_DG
+function configPstate_RCGrating
 
 global Pstate
 
@@ -21,8 +21,8 @@ Pstate.param{11} = {'min_ori'         'int'        0       0                'deg
 Pstate.param{12} = {'orirange'         'int'        360       0                'deg'};
 Pstate.param{13} = {'n_ori'    'int'   16       0                ''};
 
-Pstate.param{14} = {'min_sf'   'float'   0.125       0                ''};
-Pstate.param{15} = {'max_sf'   'float'   0.125       0                ''};
+Pstate.param{14} = {'min_sf'   'float'   0.125       0                'c/deg'};
+Pstate.param{15} = {'max_sf'   'float'   0.125       0                'c/deg'};
 Pstate.param{16} = {'n_sfreq' 'int'   1       0             ''};
 Pstate.param{17} = {'sf_domain'   'string'   'log'       0                ''};
 
@@ -33,10 +33,11 @@ Pstate.param{20} = {'blankProb'    'float'   0.05       0                ''};
 
 Pstate.param{21} = {'s_profile'   'string'   'sin'       0                ''};
 Pstate.param{22} = {'s_duty'      'float'   0.5       0                ''};
-Pstate.param{23} = {'t_period'    'int'       20       0                'frames'};
+Pstate.param{23} = {'drift'    'int'   1         0                 'binary'};
+Pstate.param{24} = {'t_period'    'int'       20       0                'frames'};
 
-Pstate.param{24} = {'rseed'    'int'   1       0                ''};
+Pstate.param{25} = {'rseed'    'int'   1       0                ''};
 
-Pstate.param{25} = {'eye_bit'    'int'   0       0                ''};
-Pstate.param{26} = {'Leye_bit'    'int'   1       0                ''};
-Pstate.param{27} = {'Reye_bit'    'int'   1       0                ''};
+Pstate.param{26} = {'eye_bit'    'int'   0       0                ''};
+Pstate.param{27} = {'Leye_bit'    'int'   1       0                ''};
+Pstate.param{28} = {'Reye_bit'    'int'   1       0                ''};

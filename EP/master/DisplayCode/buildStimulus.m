@@ -37,8 +37,6 @@ else %if it is not a blank condition
         psymbol = looperInfo.conds{cond}.symbol{i};
         msg = updateMsg(pval,psymbol,msg);
         eval([psymbol '=' num2str(pval) ';'])  %May be used to evaluate formula below (dependencies);
-        
-        %eyefunc(psymbol,pval)  %This moves the eye shutters if its the right symbol
     end
     
     %Append the message with the 'formula' information
@@ -72,9 +70,7 @@ else %if it is not a blank condition
             
             psymbol_Fmla = fmla(delim1:ide(e)-1);
             pval_Fmla = eval(psymbol_Fmla);
-            
-            %eyefunc(psymbol_Fmla, pval_Fmla)  %This moves the eye shutters if its the right symbol
-            
+                        
             msg = updateMsg(pval_Fmla,psymbol_Fmla,msg);
         end
     end
@@ -85,14 +81,6 @@ msg = [msg ';~'];  %add the "Terminator"
 
 fwrite(DcomState.serialPortHandle,msg);
 
-
-function eyefunc(sym,bit)
-
-if strcmp(sym,'Leye_bit')
-    moveLeftEyeShutter(bit);
-elseif strcmp(sym,'Reye_bit')
-    moveRightEyeShutter(bit);
-end
 
 
 function msg = updateMsg(pval,psymbol,msg)

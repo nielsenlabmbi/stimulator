@@ -262,10 +262,8 @@ if ~Mstate.running
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     trialno = 1;
     
-    run2  %In 2 computer version this is no longer a loop, but gets recalled after each trial (in 'endAcquisition' or 'Displaycb')
+    run2  %gets recalled after each trial (in 'endAcquisition' or 'Displaycb')
     
-    %We don't want anything significant to happen after 'run2', so that
-    %scanimage will be ready to accept TTL
     
 else
     Mstate.running = 0;  %Global flag for interrupt in real-time loop ('Abort')    
@@ -294,7 +292,7 @@ Mstate.expt = newexpt;
 set(handles.exptcb,'string',newexpt)
 set(handles.showTrial,'string','' )
 
-%UpdateACQExptName   %Send expt info to acquisition
+
 
 % --- Executes on button press in exptcb.
 function exptcb_Callback(hObject, eventdata, handles)
@@ -309,7 +307,7 @@ Mstate.expt = newexpt;
 set(handles.exptcb,'string',newexpt)
 set(handles.showTrial,'string','' )
 
-%UpdateACQExptName   %Send expt info to acquisition
+
 
 
 % --- Executes on button press in closeDisplay.
@@ -336,10 +334,6 @@ global GUIhandles
 flag = get(handles.ephysflag,'value');
 set(GUIhandles.main.ephysflag,'value',flag)
 
-% if flag
-%     set(handles.intrinsicflag,'value',0);
-%     set(GUIhandles.main.intrinsicflag,'value',0)
-% end
 
 
 

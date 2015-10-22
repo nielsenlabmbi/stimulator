@@ -1,10 +1,9 @@
-function startStimulus
+function startStimulus(modID)
 
 global DcomState
 
-mod = getmoduleID;
 
-msg = ['G;' mod ';~'];
+msg = ['G;' modID ';~'];
 
 fwrite(DcomState.serialPortHandle,msg);
 

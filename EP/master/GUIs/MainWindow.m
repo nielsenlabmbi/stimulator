@@ -211,7 +211,7 @@ function runbutton_Callback(hObject, eventdata, handles)
 % hObject    handle to runbutton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global Mstate GUIhandles Pstate trialno
+global Mstate GUIhandles  trialno
 
 %Run it!
 if ~Mstate.running
@@ -249,7 +249,8 @@ if ~Mstate.running
     set(handles.runbutton,'string','Abort')    
     
     %%%%Send initial parameters to display
-    sendPinfo
+    modID = getmoduleID;
+    sendPinfo(modID)
     waitforDisplayResp
     sendMinfo
     waitforDisplayResp

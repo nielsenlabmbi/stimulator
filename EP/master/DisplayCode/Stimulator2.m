@@ -1,7 +1,7 @@
 function Stimulator2
 
 %Initialize stimulus parameter structures
-configurePstate(1)
+configurePstate(1,'P') %this updates the parameters to the first module selected in paramSelect
 configureMstate
 configureLstate
 
@@ -20,5 +20,9 @@ movegui(hl,[380,445]);
 hp = paramSelect;
 movegui(hp,[10,170]);
 
-%hg = gaGui;
+hmm = manualMapper;
+movegui(hmm,[380,240]);
+
+
+hg = gaGui;
 %movegui(hg,[380,240]);

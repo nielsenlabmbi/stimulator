@@ -108,28 +108,30 @@ for i = 1:N_Im
         Screen(screenPTR, 'Flip');
         
         %generate event 
+        %with first stimulus, turn 2nd and 3rd bit on 
         if j==1 && loopTrial ~= -1
-            digWord = 3;  %toggle 2nd bit high to signal stim on
+            digWord = 7;  %toggle 2nd and 3rd bit high to signal stim on
             DaqDOut(daq, 0, digWord);
         end
         if j==floor(P.h_per/2) && loopTrial ~= -1
-            digWord = 1;  %reset 2nd bit to low
+            digWord = 3;  %reset 3rd bit to low
             DaqDOut(daq, 0, digWord);
         end
     end
 end
 
-%generate event to signal end of stimulus presentation
-if loopTrial ~= -1
-    digWord = 1;  %toggle 2nd bit to signal stim on
-    DaqDOut(daq, 0, digWord);
-end
+
     
 
 %%%Play postdelay %%%%
 for i = 1:Npostframes-1
     Screen('DrawTexture', screenPTR, Stxtr(2),syncSrc,syncDst);
     Screen(screenPTR, 'Flip');
+    %generate event to signal end of stimulus presentation
+    if loopTrial ~= -1
+        digWord = 1;  %toggle 2nd bit to signal stim on
+        DaqDOut(daq, 0, digWord);
+    end
 end
 Screen('DrawTexture', screenPTR, Stxtr(1),syncSrc,syncDst);
 Screen(screenPTR, 'Flip');

@@ -62,9 +62,9 @@ guidata(hObject, handles);
 % UIWAIT makes paramSelect wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-global GUIhandles playSampleFlag
+global GUIhandles playSampleFlag 
 
-mList=moduleListMaster;
+mList=moduleListMaster('P'); %get correct module list
 
 for i=1:length(mList)
     modStrings{i} = mList{i}{2};
@@ -75,7 +75,7 @@ set(handles.module,'string',modStrings)
 
 GUIhandles.param = handles;
 
-refreshParamView
+refreshParamView %the global Pstate has been set by calling stimulator2
 
 playSampleFlag = 0;
 
@@ -99,12 +99,13 @@ function parameterList_Callback(hObject, eventdata, handles)
 % Hints: contents = get(hObject,'String') returns parameterList contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from parameterList
 
-global Pstate
+global Pstate 
 
 idx = get(handles.parameterList,'value');
 
 set(handles.paramEditVal,'string',num2str(Pstate.param{idx}{3}));
 set(handles.paramEdit,'string',Pstate.param{idx}{1});
+
 
 % --- Executes during object creation, after setting all properties.
 function parameterList_CreateFcn(hObject, eventdata, handles)
@@ -200,7 +201,7 @@ function module_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from module
 
 mi = get(hObject,'value');
-configurePstate(mi); 
+configurePstate(mi,'P'); 
 refreshParamView(1); %we're changing lists
 
 % --- Executes during object creation, after setting all properties.
@@ -230,18 +231,17 @@ Mstate.running = 0; %I don't think this is necessary, but doing it just in case 
 
 updateMstate %this is only necessary for screendistance
 
+mod = getmoduleID;
+
 %%%%Send parameters to display
-sendPinfo
+sendPinfo(mod)
 waitforDisplayResp
 sendMinfo
 waitforDisplayResp
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%Tell it to buffer the stimulus
-mod = getmoduleID;
-%-1 (after B) is where trial number usually goes when looping.  I make it
-%-1 so that it knows we are in "sample mode".
-msg = ['B;' mod ';-1;~'];  
+msg = ['B;' mod ';-1;~'];  %-1 tells the display we're not looping, but just playing a sample
 fwrite(DcomState.serialPortHandle,msg);  %Tell it to buffer images
 waitforDisplayResp
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -254,7 +254,7 @@ function playSample_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
-startStimulus      %Tell Display to show its buffered images. 
+mod = getmoduleID;
+startStimulus(mod)      %Tell Display to show its buffered images. 
 
 

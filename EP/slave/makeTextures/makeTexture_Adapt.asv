@@ -1,6 +1,9 @@
-function makeTexture_PerGrating
+function makeTexture_Adapt
 
-%make periodic grating
+%make gratings for adaptation paradigm. first grating will oscillate back
+%and forth along one axis of movement for adaptation, the other grating is used to measure
+%tuning curves
+%adaptOnly allows to only run the adaptation grating using send/play
 %types of stimuli: one grating (plaid_bit=0, surround_bit=0), two overlapping gratings,
 %both visible entirely (plaid_bit=1, surround_bit=0), two gratings, one in
 %center, one in surround (plaid_bit=0, surround_bit=1); ; plaid_bit==1 and

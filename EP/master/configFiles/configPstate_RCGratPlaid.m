@@ -35,6 +35,5 @@ Pstate.param{22} = {'t_period'    'int'       20       0                'frames'
 
 Pstate.param{23} = {'rseed'    'int'   1       0                ''};
 
-Pstate.param{24} = {'eye_bit'    'int'   0       0                ''};
-Pstate.param{25} = {'Leye_bit'    'int'   1       0                ''};
-Pstate.param{26} = {'Reye_bit'    'int'   1       0                ''};
+Pstate.param{24} = {'Leye_bit'    'int'   1       0                ''};
+Pstate.param{25} = {'Reye_bit'    'int'   1       0                ''};

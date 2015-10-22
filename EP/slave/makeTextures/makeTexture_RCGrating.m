@@ -5,7 +5,7 @@ function makeTexture_RCGrating
 %of conditions; the rest is handled in playTexture_DG
 %this assumes a normalized color scale from 0 to 1
 
-global Mstate screenPTR screenNum 
+global Mstate screenPTR screenNum loopTrial
 
 global Gtxtr  Masktxtr  Gseq %'play' will use these
 
@@ -57,7 +57,8 @@ phasedom = phasedom(1:end-1);
 N_Im = round(P.stim_time*screenRes.hz/P.h_per); 
 
 %create random stream for trial
-s = RandStream.create('mrg32k3a','NumStreams',1,'Seed',P.rseed);
+s = RandStream.create('mrg32k3a','NumStreams',1,'Seed',datenum(date)+1000*str2double(Mstate.unit)+str2double(Mstate.expt)+P.rseed);
+
 oriseq = randi(s,[1 length(oridom)],1,N_Im); 
 sfseq = randi(s,[1 length(sfdom)],1,N_Im); 
 phaseseq = randi(s,[1 length(phasedom)],1,N_Im); 
@@ -119,7 +120,7 @@ end
 
 %save sequence data
 if Mstate.running
-    saveLog(Gseq,P.rseed)  %append log file with the latest sequence
+    saveLog(Gseq,P.rseed,loopTrial)  %append log file with the latest sequence
 end
 
 

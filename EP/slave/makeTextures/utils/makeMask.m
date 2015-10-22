@@ -1,7 +1,8 @@
 function mask=makeMask(screenRes,x_pos,y_pos,xsizeN,ysizeN,maskradiusN,mask_type)
 
-%compute stimulus masks
+%compute stimulus mask - one large aperture only
 %these masks are screen size to allow correct cropping of rotated stimuli
+%1 outside of stimulus, 0 where stimulus should appear
 
 %parameters:
 %screenRes: screen height and width

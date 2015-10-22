@@ -1,13 +1,14 @@
 function screenconfig
 
-global screenPTR screenNum Mstate screenPTROff
+global screenPTR screenPTROff screenNum Mstate 
 
 %screens=Screen('Screens');
 %screenNum=max(screens);
 
 PsychImaging('PrepareConfiguration');
 PsychImaging('AddTask','General','FloatingPoint32BitIfPossible');
-PsychImaging('AddTask','General','NormalizedHighresColorRange');
+PsychImaging('AddTask','General','NormalizedHighresColorRange',1);
+PsychImaging('AddTask', 'General', 'UseFastOffscreenWindows');
 
 AssertOpenGL;
 InitializeMatlabOpenGL;
@@ -17,13 +18,11 @@ screenNum=0;
 screenRes = Screen('Resolution',screenNum);
 
 [screenPTR,~] = PsychImaging('OpenWindow', screenNum, 0.5);
-
-
-screenPTROff=Screen('OpenOffscreenWindow',screenPTR,[128 128 128 255]);
-
 Screen(screenPTR,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-Screen(screenPTROff,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+
+screenPTROff=Screen('OpenOffscreenWindow',screenPTR,[],[],[],[],8);
+Screen(screenPTROff,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 updateMonitor
 

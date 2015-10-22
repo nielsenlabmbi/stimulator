@@ -26,7 +26,8 @@ if Mstate.running && trialno<=nt
     buildStimulus(c,trialno)    %Tell stimulus to buffer the images
     waitforDisplayResp   %Wait for serial port to respond from display
     toc 
-    startStimulus      %Tell Display to show its buffered images. TTL from stimulus computer "feeds back" to trigger acquisition
+    mod = getmoduleID;
+    startStimulus(mod)      %Tell Display to show its buffered images. TTL from stimulus computer "feeds back" to trigger acquisition
     %waitforDisplayResp
     
     trialno = trialno+1;

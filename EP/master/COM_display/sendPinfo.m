@@ -1,8 +1,9 @@
-function sendPinfo
+function sendPinfo(mod)
+%mod is the 2 letter code for the module
 
 global Pstate DcomState
 
-mod = getmoduleID;
+%mod = getmoduleID;
 
 msg = ['P;' mod];
 

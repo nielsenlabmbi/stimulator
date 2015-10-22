@@ -1,4 +1,4 @@
-function saveLog(seq,seed)
+function saveLog(seq,seed,trialno)
 
 %this function saves the sequence structure and domains; 
 %we're keeping everything in one file, so it needs to
@@ -17,6 +17,9 @@ seq.frate = Mstate.refresh_rate;
 
 
 eval(['rseed' num2str(seed) '=seq;' ])
-eval(['save ' fname ' rseed' num2str(seed) ' -append'])    
-    
+if trialno==1
+    eval(['save ' fname ' rseed' num2str(seed)])    
+else
+    eval(['save ' fname ' rseed' num2str(seed) ' -append'])    
+end
 
